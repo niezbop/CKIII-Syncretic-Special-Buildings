@@ -65,6 +65,10 @@ holy_site_great_mosque_of_cordoba_01 = {
 	
 	ai_value = {
 		base = 100
+		modifier = { # Fill all building slots before going for special buildings
+			factor = 0
+			free_building_slots > 0
+		}
 	}
 	
 	type = special
@@ -145,6 +149,10 @@ holy_site_great_mosque_of_djenne_01 = {
 	
 	ai_value = {
 		base = 100
+		modifier = { # Fill all building slots before going for special buildings
+			factor = 0
+			free_building_slots > 0
+		}
 	}
 	
 	type = special
@@ -218,6 +226,10 @@ holy_site_great_mosque_of_samarra_01 = {
 	
 	ai_value = {
 		base = 100
+		modifier = { # Fill all building slots before going for special buildings
+			factor = 0
+			free_building_slots > 0
+		}
 	}
 	
 	type = special
@@ -302,6 +314,10 @@ holy_site_cologne_cathedral_01 = {
 	
 	ai_value = {
 		base = 100
+		modifier = { # Fill all building slots before going for special buildings
+			factor = 0
+			free_building_slots > 0
+		}
 	}
 	
 	type = special
@@ -385,6 +401,10 @@ holy_site_canterbury_cathedral_01 = {
 	
 	ai_value = {
 		base = 100
+		modifier = { # Fill all building slots before going for special buildings
+			factor = 0
+			free_building_slots > 0
+		}
 	}
 	
 	type = special
@@ -460,6 +480,10 @@ holy_site_prophetic_mosque_01 = {
 	
 	ai_value = {
 		base = 100
+		modifier = { # Fill all building slots before going for special buildings
+			factor = 0
+			free_building_slots > 0
+		}
 	}
 	
 	type = special
@@ -506,6 +530,10 @@ buddhas_of_bamian_01 = {
 	
 	ai_value = {
 		base = 100
+		modifier = { # Fill all building slots before going for special buildings
+			factor = 0
+			free_building_slots > 0
+		}
 	}
 	
 	type = special
@@ -575,6 +603,10 @@ notre_dame_01 = {
 	
 	ai_value = {
 		base = 100
+		modifier = { # Fill all building slots before going for special buildings
+			factor = 0
+			free_building_slots > 0
+		}
 	}
 	
 	type = special
@@ -640,6 +672,10 @@ brihadeeswarar_temple_01 = {
 	
 	ai_value = {
 		base = 100
+		modifier = { # Fill all building slots before going for special buildings
+			factor = 0
+			free_building_slots > 0
+		}
 	}
 	
 	type = special
@@ -696,6 +732,10 @@ shwedagon_pagoda_01 = {
 	
 	ai_value = {
 		base = 100
+		modifier = { # Fill all building slots before going for special buildings
+			factor = 0
+			free_building_slots > 0
+		}
 	}
 	
 	type = special
@@ -751,6 +791,10 @@ ananda_temple_01 = {
 	
 	ai_value = {
 		base = 100
+		modifier = { # Fill all building slots before going for special buildings
+			factor = 0
+			free_building_slots > 0
+		}
 	}
 	
 	type = special
@@ -818,6 +862,10 @@ the_friday_mosque_01 = {
 	
 	ai_value = {
 		base = 100
+		modifier = { # Fill all building slots before going for special buildings
+			factor = 0
+			free_building_slots > 0
+		}
 	}
 	
 	type = special
@@ -873,6 +921,10 @@ khajuraho_01 = {
 	
 	ai_value = {
 		base = 100
+		modifier = { # Fill all building slots before going for special buildings
+			factor = 0
+			free_building_slots > 0
+		}
 	}
 	
 	type = special
@@ -953,6 +1005,10 @@ temple_of_uppsala_01 = {
 	
 	ai_value = {
 		base = 100
+		modifier = { # Fill all building slots before going for special buildings
+			factor = 0
+			free_building_slots > 0
+		}
 	}
 	
 	type = special
@@ -1027,7 +1083,7 @@ temple_of_uppsala_02 = {
 	}
 	
 	ai_value = {
-		base = 100
+		base = 8
 	}
 	
 	type = special
@@ -1106,6 +1162,10 @@ lund_cathedral_01 = {
 	
 	ai_value = {
 		base = 100
+		modifier = { # Fill all building slots before going for special buildings
+			factor = 0
+			free_building_slots > 0
+		}
 	}
 	
 	type = special
@@ -1178,6 +1238,10 @@ holy_site_basilica_santiago_01 = {
 	
 	ai_value = {
 		base = 100
+		modifier = { # Fill all building slots before going for special buildings
+			factor = 0
+			free_building_slots > 0
+		}
 	}
 	
 	type = special
