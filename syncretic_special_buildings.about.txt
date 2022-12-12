@@ -1,0 +1,28 @@
+[h1]About[/h1]
+
+[b]Syncretic Special Buildings[/b] is a simple mod that makes special buildings that require specific religions to be usable by religions with syncretism.
+
+[h1]Features[/h1]
+As explained above, the only feature of this mod is making all special religious buildings accessible to syncretic faiths.
+
+For example, Notre-Dame de Paris, a special cathedral for the catholics is now usable for the Basque pagans, provided they have kept the [b]Christian Syncretism[/b]!
+
+For a full list of buildings changed, please check the pinned discussion.
+
+[h1]Compatibility[/h1]
+
+This mod only modifies a specific set of special buildings. Any mod modifiying those as well will be incompatible; any mod not touching these files will be compatible.
+
+[h2]Achievements Compatibility[/h2]
+
+This mod is [b]Ironman Compatible[/b] but will [b]disable Achievements[/b].
+
+[h1]Links[/h1]
+You may also be interested in my other mods!
+[list]
+[*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2833935905]A few more Emerging Culture Names[/url]
+[*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2765843981]Slightly More Interesting Crimea[/url]
+[*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2765890006]Slightly More Interesting Russia[/url]
+[/list]
+
+This project can be found on [url=https://github.com/niezbop/CKIII-Syncretic-Special-Buildings]Github[/url]
