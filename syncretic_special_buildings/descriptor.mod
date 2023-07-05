@@ -5,5 +5,5 @@ tags={
 	"Balance"
 }
 name="Syncretic Special Buildings"
-supported_version="1.8.*"
+supported_version="1.9.*"
 remote_file_id="2854434625"
