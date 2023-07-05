@@ -1,3 +1,7 @@
+[h1]Imam Ali Mosque[/h1]
+[h2]is_enabled[/h2]
++ tenet_islamic_syncretism
+
 [h1]Great Mosque of Cordoba[/h1]
 [h2]is_enabled[/h2]
 + tenet_islamic_syncretism
