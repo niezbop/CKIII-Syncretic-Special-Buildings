@@ -2,6 +2,7 @@ require 'dotenv/tasks'
 require 'json'
 require 'clausewitz'
 require_relative 'helpers/block_refiner'
+require_relative 'helpers/token_refiner'
 
 LAUNCHER_SETTINGS_PATH = File.join('launcher', 'launcher-settings.json').freeze
 SPECIAL_BUILDINGS_PATH = File.join('game', 'common', 'buildings', '00_special_buildings.txt').freeze
@@ -77,6 +78,7 @@ end
 desc 'Generates the folder from game files'
 task generate: :dotenv do
   using BlockRefiner
+  using TokenRefiner
   include Clausewitz::Parsing::Tree
 
   vanilla_buildings = Clausewitz.parse(File.read special_buildings_path)
@@ -109,6 +111,7 @@ task generate: :dotenv do
       parent_to_check = find_filler_tokens(first_parent.first_token,
                                            religion_check.first_token)
       has_linebreak = parent_to_check.any? {|t| t.name == :LINE_BREAK }
+      direct_preceding = parent_to_check.last
 
       # Religion check direct preceding token is parent_to_check.last
       # Religion check direct following token is religion_check.last_token.next_token
@@ -117,25 +120,15 @@ task generate: :dotenv do
         or_statement = Statement.new(
           Identifier.new('OR'),
           Block.new)
-        # Emulate token list
-        [
+        direct_preceding.insert(*[
           fake_token('OR = {'),
           duplicate_tokens(parent_to_check),
-          fake_token(has_linebreak ? "\t" : ' '),
-          religion_check.first_token
-        ].flatten.reduce(parent_to_check.last) do |last_token, token|
-          last_token.append(token)
-          last_token = token
-        end
-
-        [
+          fake_token(has_linebreak ? "\t" : ' ')
+        ].flatten)
+        religion_check.last_token.insert(*[
           duplicate_tokens(parent_to_check),
-          fake_token('}'),
-          religion_check.last_token.next_token
-        ].flatten.reduce(religion_check.last_token) do |last_token, token|
-          last_token.append(token)
-          last_token = token
-        end
+          fake_token('}')
+        ].flatten)
       end
 
       # TODO: Insert syncretic check below religion check
