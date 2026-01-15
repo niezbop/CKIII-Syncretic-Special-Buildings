@@ -92,7 +92,7 @@ def inject_syncretism(building_statement, section)
   section_statement = find_child_by_name(building_block, section)
   return if section_statement.nil?
 
-  religion_checks = building_block.recursive_children.select do |parentage|
+  religion_checks = section_statement.right.recursive_children.select do |parentage|
     parentage.last.left.name == 'religion'
   end
 
