@@ -75,6 +75,12 @@ task reference: :dotenv do
   FileUtils.cp(special_buildings_path, version_ref)
 end
 
+SYNCRETISMS = {
+  # tenet_islamic_syncretism
+  'religion:christianity_religion' => 'tenet_christian_syncretism',
+  'religion:islam_religion' => 'tenet_islamic_syncretism',
+}.freeze
+
 desc 'Generates the folder from game files'
 task generate: :dotenv do
   using BlockRefiner
@@ -107,20 +113,19 @@ task generate: :dotenv do
       puts '+----------------------'
       puts first_parent.left.name
       puts religion_check.right.name
+      syncretism = SYNCRETISMS[religion_check.right.name]
+      next if syncretism.nil?
 
       parent_to_check = find_filler_tokens(first_parent.first_token,
                                            religion_check.first_token)
       has_linebreak = parent_to_check.any? {|t| t.name == :LINE_BREAK }
-      direct_preceding = parent_to_check.last
 
-      # Religion check direct preceding token is parent_to_check.last
-      # Religion check direct following token is religion_check.last_token.next_token
-      if first_parent&.left&.name != 'OR'
-        # TODO: Create OR parent
-        or_statement = Statement.new(
-          Identifier.new('OR'),
-          Block.new)
-        direct_preceding.insert(*[
+      should_create_or = first_parent&.left&.name != 'OR'
+      if should_create_or
+        # or_statement = Statement.new(
+        #   Identifier.new('OR'),
+        #   Block.new)
+        parent_to_check.last.insert(*[
           fake_token('OR = {'),
           duplicate_tokens(parent_to_check),
           fake_token(has_linebreak ? "\t" : ' ')
@@ -131,7 +136,11 @@ task generate: :dotenv do
         ].flatten)
       end
 
-      # TODO: Insert syncretic check below religion check
+      religion_check.last_token.insert(*[
+        duplicate_tokens(parent_to_check),
+        fake_token(should_create_or ? "\t" : ''),
+        fake_token("faith = { has_doctrine = #{syncretism} }")
+      ].flatten)
     end
   end
 
