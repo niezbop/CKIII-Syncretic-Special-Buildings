@@ -142,7 +142,9 @@ task generate: :dotenv do
   vanilla_buildings = Clausewitz.parse(File.read special_buildings_path)
 
   vanilla_buildings.children.each do |building_statement|
-    inject_syncretism(building_statement, 'can_construct')
+    ['can_construct', 'is_enabled'].each do |section|
+      inject_syncretism(building_statement, section)
+    end
   end
 
   File.open('output.txt', 'w') do |file|
