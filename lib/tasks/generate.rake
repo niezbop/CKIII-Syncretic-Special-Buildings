@@ -4,6 +4,9 @@ require 'clausewitz'
 require_relative 'helpers/block_refiner'
 require_relative 'helpers/token_refiner'
 
+using BlockRefiner
+using TokenRefiner
+
 LAUNCHER_SETTINGS_PATH = File.join('launcher', 'launcher-settings.json').freeze
 SPECIAL_BUILDINGS_PATH = File.join('game', 'common', 'buildings', '00_special_buildings.txt').freeze
 
@@ -81,67 +84,65 @@ SYNCRETISMS = {
   'religion:islam_religion' => 'tenet_islamic_syncretism',
 }.freeze
 
-desc 'Generates the folder from game files'
-task generate: :dotenv do
-  using BlockRefiner
-  using TokenRefiner
+def inject_syncretism(building_statement, section)
   include Clausewitz::Parsing::Tree
 
-  vanilla_buildings = Clausewitz.parse(File.read special_buildings_path)
-  vanilla_buildings.children.each do |child_statement|
-    building_name = child_statement.left.name
-    # puts building_name
+  building_name = building_statement.left.name
+  building_block = building_statement.right
+  section_statement = find_child_by_name(building_block, section)
+  return if section_statement.nil?
 
-    building_block = child_statement.right
+  religion_checks = building_block.recursive_children.select do |parentage|
+    parentage.last.left.name == 'religion'
+  end
 
-    can_construct_block = find_child_by_name(building_block, 'can_construct')
+  return if religion_checks.none?
 
-    next if can_construct_block.nil?
+  religion_checks.each do |parentage|
+    religion_check = parentage[-1]
+    first_parent = parentage[-2]
+    religion = religion_check.right.name
+    syncretism = SYNCRETISMS[religion]
 
-    religion_checks = can_construct_block.right.recursive_children.select do |parentage|
-      parentage.last.left.name == 'religion'
+    if syncretism.nil?
+      puts "[#{building_name}][#{section}] No syncretism for #{religion}"
+      return
     end
 
-    next if religion_checks.none?
+    parent_to_check = find_filler_tokens(first_parent.first_token,
+                                         religion_check.first_token)
+    has_linebreak = parent_to_check.any? {|t| t.name == :LINE_BREAK }
 
-    puts '#==========================='
-    puts building_name
-
-    religion_checks.each do |parentage|
-      religion_check = parentage[-1]
-      first_parent = parentage[-2]
-      puts '+----------------------'
-      puts first_parent.left.name
-      puts religion_check.right.name
-      syncretism = SYNCRETISMS[religion_check.right.name]
-      next if syncretism.nil?
-
-      parent_to_check = find_filler_tokens(first_parent.first_token,
-                                           religion_check.first_token)
-      has_linebreak = parent_to_check.any? {|t| t.name == :LINE_BREAK }
-
-      should_create_or = first_parent&.left&.name != 'OR'
-      if should_create_or
-        # or_statement = Statement.new(
-        #   Identifier.new('OR'),
-        #   Block.new)
-        parent_to_check.last.insert(*[
-          fake_token('OR = {'),
-          duplicate_tokens(parent_to_check),
-          fake_token(has_linebreak ? "\t" : ' ')
-        ].flatten)
-        religion_check.last_token.insert(*[
-          duplicate_tokens(parent_to_check),
-          fake_token('}')
-        ].flatten)
-      end
-
+    should_create_or = first_parent&.left&.name != 'OR'
+    if should_create_or
+      # or_statement = Statement.new(
+      #   Identifier.new('OR'),
+      #   Block.new)
+      parent_to_check.last.insert(*[
+        fake_token('OR = {'),
+        duplicate_tokens(parent_to_check),
+        fake_token(has_linebreak ? "\t" : ' ')
+      ].flatten)
       religion_check.last_token.insert(*[
         duplicate_tokens(parent_to_check),
-        fake_token(should_create_or ? "\t" : ''),
-        fake_token("faith = { has_doctrine = #{syncretism} }")
+        fake_token('}')
       ].flatten)
     end
+
+    religion_check.last_token.insert(*[
+      duplicate_tokens(parent_to_check),
+      fake_token(should_create_or ? "\t" : ''),
+      fake_token("faith = { has_doctrine = #{syncretism} }")
+    ].flatten)
+  end
+end
+
+desc 'Generates the folder from game files'
+task generate: :dotenv do
+  vanilla_buildings = Clausewitz.parse(File.read special_buildings_path)
+
+  vanilla_buildings.children.each do |building_statement|
+    inject_syncretism(building_statement, 'can_construct')
   end
 
   File.open('output.txt', 'w') do |file|
