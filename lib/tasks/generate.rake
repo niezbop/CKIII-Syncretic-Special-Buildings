@@ -79,9 +79,9 @@ task reference: :dotenv do
 end
 
 SYNCRETISMS = {
-  # tenet_islamic_syncretism
   'religion:christianity_religion' => 'tenet_christian_syncretism',
   'religion:islam_religion' => 'tenet_islamic_syncretism',
+  'religion:judaism_religion' => 'tenet_jewish_syncretism',
 }.freeze
 
 def inject_syncretism(building_statement, section)
