@@ -63,12 +63,12 @@ def duplicate_tokens(tokens)
   end
 end
 
-def fake_token(value)
+def fake_token(value, ignorable)
   return Clausewitz::Lexing::Token.new(
     name: :FAKE,
     value: value,
     location: Clausewitz::Lexing::Token::Location.new(line: 0, column: 0, length: 0),
-    ignorable: false)
+    ignorable: ignorable)
 end
 
 desc 'Copy the special buildings for reference'
@@ -119,20 +119,20 @@ def inject_syncretism(building_statement, section)
       #   Identifier.new('OR'),
       #   Block.new)
       parent_to_check.last.insert(*[
-        fake_token('OR = {'),
+        fake_token('OR = {', false),
         duplicate_tokens(parent_to_check),
-        fake_token(has_linebreak ? "\t" : ' ')
+        fake_token(has_linebreak ? "\t" : ' ', true)
       ].flatten)
       religion_check.last_token.insert(*[
         duplicate_tokens(parent_to_check),
-        fake_token('}')
+        fake_token('}', false)
       ].flatten)
     end
 
     religion_check.last_token.insert(*[
       duplicate_tokens(parent_to_check),
-      fake_token(should_create_or ? "\t" : ''),
-      fake_token("faith = { has_doctrine = #{syncretism} }")
+      fake_token(should_create_or ? "\t" : '', true),
+      fake_token("faith = { has_doctrine = #{syncretism} }", false)
     ].flatten)
   end
 end
