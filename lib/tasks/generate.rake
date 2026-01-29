@@ -8,7 +8,12 @@ using BlockRefiner
 using TokenRefiner
 
 LAUNCHER_SETTINGS_PATH = File.join('launcher', 'launcher-settings.json').freeze
-SPECIAL_BUILDINGS_PATH = File.join('game', 'common', 'buildings', '00_special_buildings.txt').freeze
+BUILDINGS_PATH = File.join('game', 'common', 'buildings').freeze
+FILES = %w(
+  ccp3_special_buildings.txt
+  cp6_special_buildings.txt
+  00_special_buildings.txt
+)
 
 def launcher_settings_path
   File.join(ENV['GAME_FILES_PATH'], LAUNCHER_SETTINGS_PATH)
@@ -22,8 +27,12 @@ def game_version
   JSON.parse(launcher_settings)['rawVersion']
 end
 
-def special_buildings_path
-  File.join(ENV['GAME_FILES_PATH'], SPECIAL_BUILDINGS_PATH)
+def building_path(file)
+  File.join(ENV['GAME_FILES_PATH'], BUILDINGS_PATH, file)
+end
+
+def buildings_paths
+  FILES.map {|f| building_path(f) }
 end
 
 def find_child_by_name(block, name)
@@ -75,7 +84,9 @@ desc 'Copy the special buildings for reference'
 task reference: :dotenv do
   version_ref = File.join('ref', game_version)
   FileUtils.mkdir_p(version_ref)
-  FileUtils.cp(special_buildings_path, version_ref)
+  buildings_paths.each do |path|
+    FileUtils.cp(path, version_ref)
+  end
 end
 
 SYNCRETISMS = {
@@ -139,17 +150,22 @@ end
 
 desc 'Generates the folder from game files'
 task generate: :dotenv do
-  vanilla_buildings = Clausewitz.parse(File.read special_buildings_path)
+  FileUtils.mkdir_p('out')
+  FILES.each do |file|
+    puts "#=== #{file}"
+    vanilla_buildings = Clausewitz.parse(File.read building_path(file))
 
-  vanilla_buildings.children.each do |building_statement|
-    ['can_construct', 'is_enabled'].each do |section|
-      inject_syncretism(building_statement, section)
+    vanilla_buildings.children.each do |building_statement|
+      ['can_construct', 'is_enabled'].each do |section|
+        inject_syncretism(building_statement, section)
+      end
     end
-  end
 
-  File.open('output.txt', 'w') do |file|
-    serializer = Clausewitz::Serializing::Serializer.new
-    token_list = Clausewitz::Lexing::TokenList.new(head_token: vanilla_buildings.first_token)
-    serializer.serialize(token_list, io: file)
+    output_path = File.join('out', file)
+    File.open(output_path, 'w') do |file|
+      serializer = Clausewitz::Serializing::Serializer.new
+      token_list = Clausewitz::Lexing::TokenList.new(head_token: vanilla_buildings.first_token)
+      serializer.serialize(token_list, io: file)
+    end
   end
 end
