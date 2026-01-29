@@ -1,87 +1,187 @@
-[h1]Imam Ali Mosque[/h1]
-[h2]is_enabled[/h2]
-+ tenet_islamic_syncretism
-
-[h1]Great Mosque of Cordoba[/h1]
-[h2]is_enabled[/h2]
-+ tenet_islamic_syncretism
-+ tenet_christian_syncretism
-
-[h1]Great Mosque of Djenne[/h1]
-[h2]can_construct[/h2]
-+ tenet_islamic_syncretism
-[h2]is_enabled[/h2]
-+ tenet_islamic_syncretism
-
-[h1]Great Mosque of Samarra[/h1]
-[h2]can_construct[/h2]
-+ tenet_islamic_syncretism
-[h2]is_enabled[/h2]
-+ tenet_islamic_syncretism
-
-[h1]Cologne Cathedral[/h1]
-[h2]can_construct[/h2]
-+ tenet_christian_syncretism
+[h1]Cluny Abbey 01[/h1]
 [h2]is_enabled[/h2]
 + tenet_christian_syncretism
 
-[h1]Canterbury Cathedral[/h1]
-[h2]can_construct[/h2]
-+ tenet_christian_syncretism
+[h1]Cluny Abbey 02[/h1]
 [h2]is_enabled[/h2]
 + tenet_christian_syncretism
 
-[h1]Prophetic Mosque[/h1]
-[h2]can_construct[/h2]
-+ tenet_islamic_syncretism
+[h1]Damascus Mosque 01[/h1]
 [h2]is_enabled[/h2]
 + tenet_islamic_syncretism
 
-[h1]Buddhas of Bamian[/h1]
-[h2]is_enabled[/h2]
-+ tenet_eastern_syncretism
-
-[h1]Notre Dame[/h1]
-[h2]can_construct[/h2]
-+ tenet_christian_syncretism
+[h1]Beta Giyorgis 01[/h1]
 [h2]is_enabled[/h2]
 + tenet_christian_syncretism
 
-[h1]Brihadeeswarar Temple[/h1]
+[h1]Holy Wisdom 01[/h1]
 [h2]is_enabled[/h2]
-+ tenet_eastern_syncretism
++ tenet_christian_syncretism
 
-[h1]Shwedagon Pagoda[/h1]
+[h1]Duomo Florence 01[/h1]
 [h2]is_enabled[/h2]
-+ tenet_eastern_syncretism
++ tenet_christian_syncretism
 
-[h1]Ananda Temple[/h1]
+[h1]Duomo Florence 02[/h1]
 [h2]is_enabled[/h2]
-+ tenet_eastern_syncretism
++ tenet_christian_syncretism
 
-[h1]The Friday Mosque[/h1]
-[h2]can_construct[/h2]
-+ tenet_islamic_syncretism
+[h1]Duomo Florence 03[/h1]
 [h2]is_enabled[/h2]
-+ tenet_islamic_syncretism
++ tenet_christian_syncretism
 
-[h1]Khajuraho[/h1]
+[h1]Duomo Florence 04[/h1]
 [h2]is_enabled[/h2]
-+ tenet_eastern_syncretism
++ tenet_christian_syncretism
 
-[h1]Temple of Uppsala (01 and 02)[/h1]
+[h1]Wawel Cathedral 01[/h1]
+[h2]is_enabled[/h2]
++ tenet_christian_syncretism
+
+[h1]Wawel Cathedral 02[/h1]
+[h2]is_enabled[/h2]
++ tenet_christian_syncretism
+
+[h1]Wawel Cathedral 03[/h1]
+[h2]is_enabled[/h2]
++ tenet_christian_syncretism
+
+[h1]Holy Site St Peters Basilica 01[/h1]
 [h2]can_construct[/h2]
 + tenet_christian_syncretism
+
 [h2]is_enabled[/h2]
 + tenet_christian_syncretism
 
-[h1]Lund Cathedral[/h1]
+[h1]Mont St Michel 02[/h1]
 [h2]can_construct[/h2]
 + tenet_christian_syncretism
-[h2]is_enabled[/h2]
+
+[h1]Mont St Michel 03[/h1]
+[h2]can_construct[/h2]
 + tenet_christian_syncretism
 
-[h1]The Santiago de Compostela Archcathedral Basilica [/h1]
+[h1]Mont St Michel 04[/h1]
+[h2]can_construct[/h2]
++ tenet_christian_syncretism
+
+[h1]Qutb Minar 02[/h1]
+[h2]is_enabled[/h2]
++ tenet_islamic_syncretism
+
+[h1]Holy Site Great Mosque Of Cordoba 01[/h1]
 [h2]is_enabled[/h2]
 + tenet_islamic_syncretism
 + tenet_christian_syncretism
+
+[h1]Holy Site Great Mosque Of Djenne 01[/h1]
+[h2]can_construct[/h2]
++ tenet_islamic_syncretism
+
+[h2]is_enabled[/h2]
++ tenet_islamic_syncretism
+
+[h1]Holy Site Great Mosque Of Samarra 01[/h1]
+[h2]can_construct[/h2]
++ tenet_islamic_syncretism
+
+[h2]is_enabled[/h2]
++ tenet_islamic_syncretism
+
+[h1]Holy Site Cologne Cathedral 01[/h1]
+[h2]can_construct[/h2]
++ tenet_christian_syncretism
+
+[h2]is_enabled[/h2]
++ tenet_christian_syncretism
+
+[h1]Holy Site Canterbury Cathedral 01[/h1]
+[h2]can_construct[/h2]
++ tenet_christian_syncretism
+
+[h2]is_enabled[/h2]
++ tenet_christian_syncretism
+
+[h1]Holy Site Canterbury Cathedral 02[/h1]
+[h2]can_construct[/h2]
++ tenet_christian_syncretism
+
+[h2]is_enabled[/h2]
++ tenet_christian_syncretism
+
+[h1]Holy Site Canterbury Cathedral 03[/h1]
+[h2]can_construct[/h2]
++ tenet_christian_syncretism
+
+[h2]is_enabled[/h2]
++ tenet_christian_syncretism
+
+[h1]Holy Site Prophetic Mosque 01[/h1]
+[h2]can_construct[/h2]
++ tenet_islamic_syncretism
+
+[h2]is_enabled[/h2]
++ tenet_islamic_syncretism
+
+[h1]Notre Dame 01[/h1]
+[h2]can_construct[/h2]
++ tenet_christian_syncretism
+
+[h2]is_enabled[/h2]
++ tenet_christian_syncretism
+
+[h1]The Friday Mosque 01[/h1]
+[h2]can_construct[/h2]
++ tenet_islamic_syncretism
+
+[h2]is_enabled[/h2]
++ tenet_islamic_syncretism
+
+[h1]Hagia Sophia 02[/h1]
+[h2]can_construct[/h2]
++ tenet_islamic_syncretism
+
+[h2]is_enabled[/h2]
++ tenet_islamic_syncretism
+
+[h1]Temple In Jerusalem 01[/h1]
+[h2]is_enabled[/h2]
++ tenet_jewish_syncretism
+
+[h1]Temple Of Uppsala 01[/h1]
+[h2]can_construct[/h2]
++ tenet_christian_syncretism
+
+[h2]is_enabled[/h2]
++ tenet_christian_syncretism
+
+[h1]Temple Of Uppsala 02[/h1]
+[h2]can_construct[/h2]
++ tenet_christian_syncretism
+
+[h2]is_enabled[/h2]
++ tenet_christian_syncretism
+
+[h1]Lund Cathedral 01[/h1]
+[h2]can_construct[/h2]
++ tenet_christian_syncretism
+
+[h2]is_enabled[/h2]
++ tenet_christian_syncretism
+
+[h1]Holy Site Basilica Santiago 01[/h1]
+[h2]is_enabled[/h2]
++ tenet_islamic_syncretism
++ tenet_christian_syncretism
+
+[h1]Imam Reza Shrine 01[/h1]
+[h2]is_enabled[/h2]
++ tenet_islamic_syncretism
+
+[h1]Minarets And Remains Of Jam 01[/h1]
+[h2]can_construct[/h2]
++ tenet_islamic_syncretism
+
+[h2]is_enabled[/h2]
++ tenet_islamic_syncretism
+

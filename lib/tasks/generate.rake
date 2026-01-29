@@ -95,7 +95,7 @@ SYNCRETISMS = {
   'religion:judaism_religion' => 'tenet_jewish_syncretism',
 }.freeze
 
-def inject_syncretism(building_statement, section)
+def inject_syncretism(building_statement, section, changes)
   include Clausewitz::Parsing::Tree
 
   building_name = building_statement.left.name
@@ -145,19 +145,24 @@ def inject_syncretism(building_statement, section)
       fake_token(should_create_or ? "\t" : '', true),
       fake_token("faith = { has_doctrine = #{syncretism} }", false)
     ].flatten)
+
+    changes[building_name] ||= {}
+    changes[building_name][section] ||= []
+    changes[building_name][section] << syncretism
   end
 end
 
 desc 'Generates the folder from game files'
 task generate: :dotenv do
   FileUtils.mkdir_p('out')
+  changes = {}
   FILES.each do |file|
     puts "#=== #{file}"
     vanilla_buildings = Clausewitz.parse(File.read building_path(file))
 
     vanilla_buildings.children.each do |building_statement|
       ['can_construct', 'is_enabled'].each do |section|
-        inject_syncretism(building_statement, section)
+        inject_syncretism(building_statement, section, changes)
       end
     end
 
@@ -166,6 +171,18 @@ task generate: :dotenv do
       serializer = Clausewitz::Serializing::Serializer.new
       token_list = Clausewitz::Lexing::TokenList.new(head_token: vanilla_buildings.first_token)
       serializer.serialize(token_list, io: file)
+    end
+
+    File.open('CHANGES.txt', 'w') do |file|
+      changes.each do |building_name, sections|
+        human_name = building_name.split('_').map(&:capitalize).join(' ')
+        file.puts "[h1]#{human_name}[/h1]"
+        sections.each do |section, changes|
+          file.puts "[h2]#{section}[/h2]"
+          changes.each {|c| file.puts "+ #{c}" }
+          file.puts ""
+        end
+      end
     end
   end
 end
